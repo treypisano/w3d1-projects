@@ -70,7 +70,55 @@ class Array
         end
         new_arr
     end
+
+    # example 1 
+    # a , orignial 1 = 0
+    #a new_i = 3
+    #new_i = 0 + (length - n)
+
+    def my_rotate(n=1)
+        new_arr = Array.new(self.length)
+        
+        self.each_with_index do |ele,i|
+            new_i = i - n  % self.length
+            new_arr[new_i] = ele
+        end
+        new_arr
+    end
+
+    def my_join(string="")
+        new_str = ""
+        self.each do |ele|
+            new_str += ele
+            new_str += string
+        end
+        new_str 
+    end
+
+    def my_reverse
+        i = self.length - 1
+        new_arr = []
+
+        while i >= 0 
+            new_arr << self[i]
+            i -= 1
+        end
+        new_arr
+    end
 end
+
+p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+p [ 1 ].my_reverse               #=> [1]
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_join         # => "abcd"
+# p a.my_join("$")    # => "a$b$c$d"
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_rotate         #=> ["b", "c", "d", "a"]
+# p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
 # calls my_each twice on the array, printing all the numbers twice.
 # return_value = [1, 2, 3].my_each do |num|
@@ -102,12 +150,12 @@ end
 
 # p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 
-a = [ 4, 5, 6 ]
-b = [ 7, 8, 9 ]
-p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
-p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+# a = [ 4, 5, 6 ]
+# b = [ 7, 8, 9 ]
+# p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
 
-c = [10, 11, 12]
-d = [13, 14, 15]
-p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
